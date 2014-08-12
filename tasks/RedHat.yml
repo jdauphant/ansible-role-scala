@@ -1,0 +1,8 @@
+---
+- name: Download sbt
+  get_url: url={{scala_sbt_url_rpm}} dest={{scala_sbt_tmp_rpm}}
+  tags: ["packages","scala"]
+
+- name: Install sbt for RedHat OS family
+  yum: name={{scala_sbt_tmp_rpm}}
+  tags: ["packages","scala"]
