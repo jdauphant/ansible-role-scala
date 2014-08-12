@@ -1,0 +1,26 @@
+---
+- name: Download sbt
+  get_url: url={{scala_sbt_url_zip}} dest={{scala_sbt_tmp_zip}}
+  tags: ["packages","scala"]
+
+- name: Ensure installation directory
+  file:
+    state=directory
+    mode=0755
+    dest={{scala_sbt_install_dir}}/{{scala_sbt_version}}
+  tags: ["packages","scala"]
+
+- name: Unarchive sbt
+  unarchive:
+    src={{scala_sbt_tmp_zip}}
+    dest={{scala_sbt_install_dir}}/{{scala_sbt_version}}
+    copy=false
+  tags: ["packages","scala"]
+
+- name: Linking binaries into system PATH
+  file:
+    state=link
+    force=true
+    src={{scala_sbt_install_dir}}/{{scala_sbt_version}}/sbt/bin/sbt
+    dest={{scala_bin_path}}/sbt
+  tags: ["packages","scala"]

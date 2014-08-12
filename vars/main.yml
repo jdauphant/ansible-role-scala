@@ -1,4 +1,5 @@
 ---
 scala_sbt_url_deb: "http://dl.bintray.com/sbt/debian/sbt-{{scala_sbt_version}}.deb"
 scala_sbt_url_rpm: "http://dl.bintray.com/sbt/rpm/sbt-{{scala_sbt_version}}.rpm"
+scala_sbt_url_zip: "http://dl.bintray.com/sbt/native-packages/sbt/{{scala_sbt_version}}/sbt-{{scala_sbt_version}}.zip"
 
