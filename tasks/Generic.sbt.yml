@@ -1,13 +1,19 @@
 ---
+- name: Ensure unzip is installed
+  action: "{{ ansible_pkg_mgr }} state=present name=unzip"
+  environment: scala_environment
+  tags: ["packages","scala"]
+
+- name: Download sbt
+  get_url: url={{scala_sbt_url_zip}} dest={{scala_sbt_tmp_zip}}
+  environment: scala_environment
+  tags: ["packages","scala"]
+
 - name: Ensure installation directory
   file:
     state=directory
     mode=0755
     dest={{scala_sbt_install_dir}}/{{scala_sbt_version}}/
-  tags: ["packages","scala"]
-
-- name: Download sbt
-  get_url: url={{scala_sbt_url_zip}} dest={{scala_sbt_tmp_zip}}
   tags: ["packages","scala"]
 
 - name: Unarchive sbt

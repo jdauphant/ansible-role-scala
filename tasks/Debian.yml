@@ -1,6 +1,7 @@
 ---
 - name: Download sbt
   get_url: url={{scala_sbt_url_deb}} dest={{scala_sbt_tmp_deb}}
+  environment: scala_environment
   tags: ["packages","scala"]
 
 - name: Install sbt for Debian OS family
