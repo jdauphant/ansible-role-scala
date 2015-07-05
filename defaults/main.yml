@@ -1,5 +1,5 @@
 ---
-scala_sbt_version: 0.13.5
+scala_sbt_version: 0.13.8
 scala_sbt_tmp_deb: "/tmp/sbt.{{scala_sbt_version}}.deb"
 scala_sbt_tmp_rpm: "/tmp/sbt.{{scala_sbt_version}}.rpm"
 scala_sbt_tmp_zip: "/tmp/sbt.{{scala_sbt_version}}.zip"
