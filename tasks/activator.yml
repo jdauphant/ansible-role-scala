@@ -1,0 +1,40 @@
+---
+- name: Ensure unzip is installed
+  action: "{{ ansible_pkg_mgr }} state=present name=unzip"
+  environment: scala_environment
+  tags: ["packages","scala"]
+
+- name: Download activator
+  get_url: url={{scala_activator_url}} dest={{scala_activator_zip}}
+  environment: scala_environment
+  tags: ["packages","scala"]
+
+- name: Ensure activator installation directory
+  file:
+    state=directory
+    mode=0755
+    dest={{scala_activator_install_dir}}/{{scala_activator_version}}/
+  tags: ["packages","scala"]
+
+- name: Unarchive activator
+  unarchive:
+    src="{{scala_activator_zip}}"
+    dest="{{scala_activator_install_dir}}/{{scala_activator_version}}/"
+    copy=false
+  tags: ["packages","scala"]
+
+- name: Ensure activator binary have good right
+  file:
+    state=file
+    mode="0755"
+    path={{scala_activator_install_dir}}/{{scala_activator_version}}/activator-{{scala_activator_version}}-minimal/activator
+  tags: ["packages","scala"]
+
+- name: Linking activator binary into system PATH
+  file:
+    state=link
+    force=true
+    src={{scala_activator_install_dir}}/{{scala_activator_version}}/activator-{{scala_activator_version}}-minimal/activator
+    dest={{scala_bin_path}}/activator
+  tags: ["packages","scala"]
+

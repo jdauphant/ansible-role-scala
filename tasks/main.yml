@@ -5,3 +5,5 @@
    when: ansible_os_family == 'RedHat' and scala_sbt_force_generic != true
  - include: Generic.sbt.yml
    when: scala_sbt_force_generic == true or (ansible_os_family not in ['Debian','RedHat'])
+ - include: activator.yml
+   when: scala_with_activator == true
